@@ -1,0 +1,25 @@
+---
+- hosts: ansible_clients
+  become: yes
+  become_user: root
+  vars:
+    dest: "/home/nfs/ipx"
+    ansistrano_deploy_via: "download_unarchive"
+#    ansistrano_get_url: http://203.80.242.178/temp/ecdock_ansistrano-main.tar.gz
+    ansistrano_get_url: http://203.80.242.178/temp/ipx-develop.tar.gz
+    ansistrano_download_force_basic_auth: true
+    ansistrano_download_username: eclass
+    ansistrano_download_password: wg1
+    ansistrano_deploy_to: "{{ dest }}"
+    ansistrano_after_update_code_tasks_file: "{{ playbook_dir }}/my-custom-tasks/my-after-update-code-tasks.yml"
+    ansistrano_after_cleanup_tasks_file: "{{ playbook_dir }}/my-custom-tasks/my-after-cleanup-tasks.yml"
+    ansistrano_allow_anonymous_stats: false
+    ansistrano_shared_paths:
+        - ipx/storage
+        - ipx/env
+    ansistrano_shared_files:
+        - ipx/.env
+#    ansistrano_ensure_shared_paths_exist: no
+#    ansistrano_ensure_basedirs_shared_files_exist: no
+  roles:
+     - { role: ansistrano.deploy }

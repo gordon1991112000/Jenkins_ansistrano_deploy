@@ -1,0 +1,27 @@
+- name: Stack deploy portainer traefik container
+  shell:
+    "./deploy_portainer_traefik.sh"
+  args:
+     chdir: /home/nfs/ecdock
+
+- name: Stack deploy ipx container
+  shell:
+    "./deploy.sh"
+  args:
+     chdir: /home/nfs/ecdock/compose
+
+- name: Stack deploy cadvisor
+  shell:
+    "./deploy_cadvisor.sh"
+  args:
+     chdir: /home/nfs/cadvisor
+
+- name: Update ownership and permission
+  shell:
+    "./change_permission.sh"
+  args:
+     chdir: /home/nfs/script
+
+- name: Initialize Laravel project
+  shell:
+    "docker -H ssh://root@10.0.80.84:2022 exec -ti $(docker -H ssh://root@10.0.80.84:2022 ps | grep ecdock_php80 | awk '{print $1}') /mnt/laravel_init.sh {{ domain_name }}"
