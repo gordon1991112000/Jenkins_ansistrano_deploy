@@ -3,15 +3,13 @@
   become: yes
   become_user: root
   vars_files:
-    - var/main.yml
+    - var/main_deploy.yml
   vars:
     dest: "/home/nfs/ipx"
     ansistrano_deploy_via: "git"
-#    ansistrano_git_repo: https://ecg.eclasscloud.hk/gordonkccheung/ipx.git
-    ansistrano_git_repo: "{{ git_repo }}" 
+    ansistrano_git_repo: "{{ git_repo }}"
     ansistrano_git_branch: "{{ git_branch }}"
     ansistrano_deploy_to: "{{ dest }}"
-#    ansistrano_after_update_code_tasks_file: "{{ playbook_dir }}/my-custom-tasks/my-after-update-code-tasks.yml"
     ansistrano_after_cleanup_tasks_file: "{{ playbook_dir }}/my-custom-tasks/my-after-cleanup-tasks.yml"
     ansistrano_allow_anonymous_stats: false
     ansistrano_shared_paths:
