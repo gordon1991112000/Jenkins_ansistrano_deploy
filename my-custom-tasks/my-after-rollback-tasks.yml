@@ -1,0 +1,23 @@
+- name: Stack deploy portainer traefik container
+  shell:
+    "./deploy_portainer_traefik.sh"
+  args:
+     chdir: /home/nfs/ecdock
+
+- name: Stack deploy ipx container
+  shell:
+    "./deploy.sh"
+  args:
+     chdir: /home/nfs/ecdock/compose
+
+- name: Stack deploy cadvisor
+  shell:
+    "./deploy_cadvisor.sh"
+  args:
+     chdir: /home/nfs/cadvisor
+
+- name: Update ownership and permission
+  shell:
+    "./change_permission.sh"
+  args:
+     chdir: /home/nfs/script
