@@ -4,16 +4,6 @@ echo ${Rollback}
 
 array=${domain_name}
 
-##################Update ecg repo from mis-git######################
-cd /tmp
-rm -rf ipx
-#git clone git@mis-git.eclass.hk:gordonkccheung/ipx.git
-git clone git@git2.broadlearning.com:IPX/ipx.git
-cd ipx
-git remote rename origin upstream
-git remote add origin git@ecg.eclasscloud.hk:gordonkccheung/ipx.git
-git push -f origin develop:stage              #######push to specific branch: git push origin localBranchName:remoteBranchName
-
 #####################Ansible########################
 if [ "${Rollback}" = "true" ];then
 sshpass ssh -p 22 -o StrictHostKeyChecking=no -o ConnectTimeout=60 -o ServerAliveInterval=60  root@192.168.10.100  -T << EOF
