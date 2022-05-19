@@ -1,0 +1,140 @@
+2022-02-10 10:26:00,345 p=13540 u=eclass n=ansible | ansible 2.9.25
+  config file = /var/lib/awx/projects/ansible-maxscale-for-mariadb/ansible.cfg
+  configured module search path = [u'/root/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python2.7/site-packages/ansible
+  executable location = /usr/bin/ansible
+  python version = 2.7.5 (default, Nov 16 2020, 22:23:17) [GCC 4.8.5 20150623 (Red Hat 4.8.5-44)]
+2022-02-10 10:26:00,345 p=13540 u=eclass n=ansible | Using /var/lib/awx/projects/ansible-maxscale-for-mariadb/ansible.cfg as config file
+2022-02-10 10:26:00,355 p=13540 u=eclass n=ansible | host_list declined parsing /var/lib/awx/projects/ansible-maxscale-for-mariadb/hosts as it did not pass its verify_file() method
+2022-02-10 10:26:00,356 p=13540 u=eclass n=ansible | script declined parsing /var/lib/awx/projects/ansible-maxscale-for-mariadb/hosts as it did not pass its verify_file() method
+2022-02-10 10:26:00,356 p=13540 u=eclass n=ansible | auto declined parsing /var/lib/awx/projects/ansible-maxscale-for-mariadb/hosts as it did not pass its verify_file() method
+2022-02-10 10:26:00,372 p=13540 u=eclass n=ansible | Parsed /var/lib/awx/projects/ansible-maxscale-for-mariadb/hosts inventory source with ini plugin
+2022-02-10 10:26:00,471 p=13540 u=eclass n=ansible | Skipping callback 'actionable', as we already have a stdout callback.
+2022-02-10 10:26:00,471 p=13540 u=eclass n=ansible | Skipping callback 'counter_enabled', as we already have a stdout callback.
+2022-02-10 10:26:00,471 p=13540 u=eclass n=ansible | Skipping callback 'debug', as we already have a stdout callback.
+2022-02-10 10:26:00,471 p=13540 u=eclass n=ansible | Skipping callback 'dense', as we already have a stdout callback.
+2022-02-10 10:26:00,472 p=13540 u=eclass n=ansible | Skipping callback 'dense', as we already have a stdout callback.
+2022-02-10 10:26:00,472 p=13540 u=eclass n=ansible | Skipping callback 'full_skip', as we already have a stdout callback.
+2022-02-10 10:26:00,472 p=13540 u=eclass n=ansible | Skipping callback 'json', as we already have a stdout callback.
+2022-02-10 10:26:00,472 p=13540 u=eclass n=ansible | Skipping callback 'minimal', as we already have a stdout callback.
+2022-02-10 10:26:00,472 p=13540 u=eclass n=ansible | Skipping callback 'null', as we already have a stdout callback.
+2022-02-10 10:26:00,472 p=13540 u=eclass n=ansible | Skipping callback 'oneline', as we already have a stdout callback.
+2022-02-10 10:26:00,472 p=13540 u=eclass n=ansible | Skipping callback 'selective', as we already have a stdout callback.
+2022-02-10 10:26:00,472 p=13540 u=eclass n=ansible | Skipping callback 'skippy', as we already have a stdout callback.
+2022-02-10 10:26:00,473 p=13540 u=eclass n=ansible | Skipping callback 'stderr', as we already have a stdout callback.
+2022-02-10 10:26:00,473 p=13540 u=eclass n=ansible | Skipping callback 'unixy', as we already have a stdout callback.
+2022-02-10 10:26:00,473 p=13540 u=eclass n=ansible | Skipping callback 'yaml', as we already have a stdout callback.
+2022-02-10 10:26:00,514 p=13540 u=eclass n=ansible | META: ran handlers
+2022-02-10 10:26:00,804 p=13552 u=eclass n=ansible | <proxy-local> Attempting python interpreter discovery
+2022-02-10 10:26:00,804 p=13553 u=eclass n=ansible | <proxy-maxscale> Attempting python interpreter discovery
+2022-02-10 10:26:00,804 p=13552 u=eclass n=ansible | <proxy-local> ESTABLISH LOCAL CONNECTION FOR USER: eclass
+2022-02-10 10:26:00,804 p=13553 u=eclass n=ansible | <172.16.122.154> ESTABLISH SSH CONNECTION FOR USER: None
+2022-02-10 10:26:00,805 p=13552 u=eclass n=ansible | <proxy-local> EXEC /bin/sh -c 'echo PLATFORM; uname; echo FOUND; command -v '"'"'/usr/bin/python'"'"'; command -v '"'"'python3.7'"'"'; command -v '"'"'python3.6'"'"'; command -v '"'"'python3.5'"'"'; command -v '"'"'python2.7'"'"'; command -v '"'"'python2.6'"'"'; command -v '"'"'/usr/libexec/platform-python'"'"'; command -v '"'"'/usr/bin/python3'"'"'; command -v '"'"'python'"'"'; echo ENDFOUND && sleep 0'
+2022-02-10 10:26:00,805 p=13553 u=eclass n=ansible | <172.16.122.154> SSH: EXEC ssh -o ControlMaster=auto -o ControlPersist=60s -o PreferredAuthentications=publickey -o StrictHostKeyChecking=no -o 'IdentityFile="/var/lib/awx/projects/ansible-maxscale-for-mariadb/ansible"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o ConnectTimeout=10 -o ControlPath=/root/.ansible/cp/fdc2991e50 172.16.122.154 '/bin/sh -c '"'"'echo PLATFORM; uname; echo FOUND; command -v '"'"'"'"'"'"'"'"'/usr/bin/python'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python3.7'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python3.6'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python3.5'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python2.7'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python2.6'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'/usr/libexec/platform-python'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'/usr/bin/python3'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python'"'"'"'"'"'"'"'"'; echo ENDFOUND && sleep 0'"'"''
+2022-02-10 10:26:00,816 p=13552 u=eclass n=ansible | <proxy-local> EXEC /bin/sh -c '/usr/bin/python && sleep 0'
+2022-02-10 10:26:00,848 p=13552 u=eclass n=ansible | Using module file /usr/lib/python2.7/site-packages/ansible/modules/system/ping.py
+2022-02-10 10:26:00,849 p=13552 u=eclass n=ansible | Pipelining is enabled.
+2022-02-10 10:26:00,849 p=13552 u=eclass n=ansible | <proxy-local> EXEC /bin/sh -c 'sudo -H -S -n  -u root /bin/sh -c '"'"'echo BECOME-SUCCESS-qexpsuglviruvidbuvyrbxbygxhaqkhd ; /usr/bin/python'"'"' && sleep 0'
+2022-02-10 10:26:01,115 p=13540 u=eclass n=ansible | proxy-local | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python"
+    }, 
+    "changed": false, 
+    "invocation": {
+        "module_args": {
+            "data": "pong"
+        }
+    }, 
+    "ping": "pong"
+}
+2022-02-10 10:26:10,829 p=13553 u=eclass n=ansible | <172.16.122.154> (255, '', 'ssh: connect to host 172.16.122.154 port 22: Connection timed out\r\n')
+2022-02-10 10:26:10,831 p=13553 u=eclass n=ansible | [WARNING]: Unhandled error in Python interpreter discovery for host proxy-maxscale: Failed to connect to the host via ssh: ssh: connect to host 172.16.122.154 port 22: Connection timed out
+
+2022-02-10 10:26:10,856 p=13553 u=eclass n=ansible | Using module file /usr/lib/python2.7/site-packages/ansible/modules/system/ping.py
+2022-02-10 10:26:10,856 p=13553 u=eclass n=ansible | Pipelining is enabled.
+2022-02-10 10:26:10,856 p=13553 u=eclass n=ansible | <172.16.122.154> ESTABLISH SSH CONNECTION FOR USER: None
+2022-02-10 10:26:10,857 p=13553 u=eclass n=ansible | <172.16.122.154> SSH: EXEC ssh -o ControlMaster=auto -o ControlPersist=60s -o PreferredAuthentications=publickey -o StrictHostKeyChecking=no -o 'IdentityFile="/var/lib/awx/projects/ansible-maxscale-for-mariadb/ansible"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o ConnectTimeout=10 -o ControlPath=/root/.ansible/cp/fdc2991e50 172.16.122.154 '/bin/sh -c '"'"'sudo -H -S -n  -u root /bin/sh -c '"'"'"'"'"'"'"'"'echo BECOME-SUCCESS-kbcurrhnwroxptpfqopwmegwukjoztic ; /usr/bin/python'"'"'"'"'"'"'"'"' && sleep 0'"'"''
+2022-02-10 10:26:20,884 p=13540 u=eclass n=ansible | proxy-maxscale | UNREACHABLE! => {
+    "changed": false, 
+    "msg": "Data could not be sent to remote host \"172.16.122.154\". Make sure this host can be reached over ssh: ssh: connect to host 172.16.122.154 port 22: Connection timed out\r\n", 
+    "unreachable": true
+}
+2022-02-10 10:26:20,884 p=13540 u=eclass n=ansible | META: ran handlers
+2022-02-10 10:26:20,885 p=13540 u=eclass n=ansible | META: ran handlers
+2022-02-10 10:27:16,373 p=13787 u=eclass n=ansible | ansible 2.9.25
+  config file = /var/lib/awx/projects/ansible-maxscale-for-mariadb/ansible.cfg
+  configured module search path = [u'/root/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python2.7/site-packages/ansible
+  executable location = /usr/bin/ansible
+  python version = 2.7.5 (default, Nov 16 2020, 22:23:17) [GCC 4.8.5 20150623 (Red Hat 4.8.5-44)]
+2022-02-10 10:27:16,373 p=13787 u=eclass n=ansible | Using /var/lib/awx/projects/ansible-maxscale-for-mariadb/ansible.cfg as config file
+2022-02-10 10:27:16,383 p=13787 u=eclass n=ansible | host_list declined parsing /var/lib/awx/projects/ansible-maxscale-for-mariadb/hosts as it did not pass its verify_file() method
+2022-02-10 10:27:16,383 p=13787 u=eclass n=ansible | script declined parsing /var/lib/awx/projects/ansible-maxscale-for-mariadb/hosts as it did not pass its verify_file() method
+2022-02-10 10:27:16,384 p=13787 u=eclass n=ansible | auto declined parsing /var/lib/awx/projects/ansible-maxscale-for-mariadb/hosts as it did not pass its verify_file() method
+2022-02-10 10:27:16,399 p=13787 u=eclass n=ansible | Parsed /var/lib/awx/projects/ansible-maxscale-for-mariadb/hosts inventory source with ini plugin
+2022-02-10 10:27:16,482 p=13787 u=eclass n=ansible | Skipping callback 'actionable', as we already have a stdout callback.
+2022-02-10 10:27:16,482 p=13787 u=eclass n=ansible | Skipping callback 'counter_enabled', as we already have a stdout callback.
+2022-02-10 10:27:16,483 p=13787 u=eclass n=ansible | Skipping callback 'debug', as we already have a stdout callback.
+2022-02-10 10:27:16,483 p=13787 u=eclass n=ansible | Skipping callback 'dense', as we already have a stdout callback.
+2022-02-10 10:27:16,483 p=13787 u=eclass n=ansible | Skipping callback 'dense', as we already have a stdout callback.
+2022-02-10 10:27:16,483 p=13787 u=eclass n=ansible | Skipping callback 'full_skip', as we already have a stdout callback.
+2022-02-10 10:27:16,483 p=13787 u=eclass n=ansible | Skipping callback 'json', as we already have a stdout callback.
+2022-02-10 10:27:16,483 p=13787 u=eclass n=ansible | Skipping callback 'minimal', as we already have a stdout callback.
+2022-02-10 10:27:16,484 p=13787 u=eclass n=ansible | Skipping callback 'null', as we already have a stdout callback.
+2022-02-10 10:27:16,484 p=13787 u=eclass n=ansible | Skipping callback 'oneline', as we already have a stdout callback.
+2022-02-10 10:27:16,484 p=13787 u=eclass n=ansible | Skipping callback 'selective', as we already have a stdout callback.
+2022-02-10 10:27:16,484 p=13787 u=eclass n=ansible | Skipping callback 'skippy', as we already have a stdout callback.
+2022-02-10 10:27:16,484 p=13787 u=eclass n=ansible | Skipping callback 'stderr', as we already have a stdout callback.
+2022-02-10 10:27:16,484 p=13787 u=eclass n=ansible | Skipping callback 'unixy', as we already have a stdout callback.
+2022-02-10 10:27:16,484 p=13787 u=eclass n=ansible | Skipping callback 'yaml', as we already have a stdout callback.
+2022-02-10 10:27:16,526 p=13787 u=eclass n=ansible | META: ran handlers
+2022-02-10 10:27:16,792 p=13795 u=eclass n=ansible | <proxy-local> Attempting python interpreter discovery
+2022-02-10 10:27:16,793 p=13795 u=eclass n=ansible | <proxy-local> ESTABLISH LOCAL CONNECTION FOR USER: eclass
+2022-02-10 10:27:16,793 p=13796 u=eclass n=ansible | <proxy-maxscale> Attempting python interpreter discovery
+2022-02-10 10:27:16,793 p=13795 u=eclass n=ansible | <proxy-local> EXEC /bin/sh -c 'echo PLATFORM; uname; echo FOUND; command -v '"'"'/usr/bin/python'"'"'; command -v '"'"'python3.7'"'"'; command -v '"'"'python3.6'"'"'; command -v '"'"'python3.5'"'"'; command -v '"'"'python2.7'"'"'; command -v '"'"'python2.6'"'"'; command -v '"'"'/usr/libexec/platform-python'"'"'; command -v '"'"'/usr/bin/python3'"'"'; command -v '"'"'python'"'"'; echo ENDFOUND && sleep 0'
+2022-02-10 10:27:16,793 p=13796 u=eclass n=ansible | <172.16.122.154> ESTABLISH SSH CONNECTION FOR USER: None
+2022-02-10 10:27:16,794 p=13796 u=eclass n=ansible | <172.16.122.154> SSH: EXEC ssh -o ControlMaster=auto -o ControlPersist=60s -o PreferredAuthentications=publickey -o StrictHostKeyChecking=no -o 'IdentityFile="/var/lib/awx/projects/ansible-maxscale-for-mariadb/ansible"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o ConnectTimeout=10 -o ControlPath=/root/.ansible/cp/fdc2991e50 172.16.122.154 '/bin/sh -c '"'"'echo PLATFORM; uname; echo FOUND; command -v '"'"'"'"'"'"'"'"'/usr/bin/python'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python3.7'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python3.6'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python3.5'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python2.7'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python2.6'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'/usr/libexec/platform-python'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'/usr/bin/python3'"'"'"'"'"'"'"'"'; command -v '"'"'"'"'"'"'"'"'python'"'"'"'"'"'"'"'"'; echo ENDFOUND && sleep 0'"'"''
+2022-02-10 10:27:16,805 p=13795 u=eclass n=ansible | <proxy-local> EXEC /bin/sh -c '/usr/bin/python && sleep 0'
+2022-02-10 10:27:16,839 p=13795 u=eclass n=ansible | Using module file /usr/lib/python2.7/site-packages/ansible/modules/system/ping.py
+2022-02-10 10:27:16,840 p=13795 u=eclass n=ansible | Pipelining is enabled.
+2022-02-10 10:27:16,840 p=13795 u=eclass n=ansible | <proxy-local> EXEC /bin/sh -c 'sudo -H -S -n  -u root /bin/sh -c '"'"'echo BECOME-SUCCESS-vqzcmiqkgumeicwcmbycxrrybqyfrjjl ; /usr/bin/python'"'"' && sleep 0'
+2022-02-10 10:27:17,004 p=13787 u=eclass n=ansible | proxy-local | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python"
+    }, 
+    "changed": false, 
+    "invocation": {
+        "module_args": {
+            "data": "pong"
+        }
+    }, 
+    "ping": "pong"
+}
+2022-02-10 10:27:26,813 p=13796 u=eclass n=ansible | <172.16.122.154> (255, '', 'ssh: connect to host 172.16.122.154 port 22: Connection timed out\r\n')
+2022-02-10 10:27:26,815 p=13796 u=eclass n=ansible | [WARNING]: Unhandled error in Python interpreter discovery for host proxy-maxscale: Failed to connect to the host via ssh: ssh: connect to host 172.16.122.154 port 22: Connection timed out
+
+2022-02-10 10:27:26,820 p=13796 u=eclass n=ansible | Using module file /usr/lib/python2.7/site-packages/ansible/modules/system/ping.py
+2022-02-10 10:27:26,820 p=13796 u=eclass n=ansible | Pipelining is enabled.
+2022-02-10 10:27:26,821 p=13796 u=eclass n=ansible | <172.16.122.154> ESTABLISH SSH CONNECTION FOR USER: None
+2022-02-10 10:27:26,822 p=13796 u=eclass n=ansible | <172.16.122.154> SSH: EXEC ssh -o ControlMaster=auto -o ControlPersist=60s -o PreferredAuthentications=publickey -o StrictHostKeyChecking=no -o 'IdentityFile="/var/lib/awx/projects/ansible-maxscale-for-mariadb/ansible"' -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o ConnectTimeout=10 -o ControlPath=/root/.ansible/cp/fdc2991e50 172.16.122.154 '/bin/sh -c '"'"'sudo -H -S -n  -u root /bin/sh -c '"'"'"'"'"'"'"'"'echo BECOME-SUCCESS-clvrvataxdwwobqjsijqknwwtpazdbpw ; /usr/bin/python'"'"'"'"'"'"'"'"' && sleep 0'"'"''
+2022-02-10 10:27:36,847 p=13787 u=eclass n=ansible | proxy-maxscale | UNREACHABLE! => {
+    "changed": false, 
+    "msg": "Data could not be sent to remote host \"172.16.122.154\". Make sure this host can be reached over ssh: ssh: connect to host 172.16.122.154 port 22: Connection timed out\r\n", 
+    "unreachable": true
+}
+2022-02-10 10:27:36,848 p=13787 u=eclass n=ansible | META: ran handlers
+2022-02-10 10:27:36,849 p=13787 u=eclass n=ansible | META: ran handlers
+2022-02-10 10:27:46,862 p=13884 u=eclass n=ansible | proxy-local | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python"
+    }, 
+    "changed": false, 
+    "ping": "pong"
+}
+2022-02-10 10:27:56,667 p=13893 u=eclass n=ansible | [WARNING]: Unhandled error in Python interpreter discovery for host proxy-maxscale: Failed to connect to the host via ssh: ssh: connect to host 172.16.122.154 port 22: Connection timed out
+
+2022-02-10 10:28:06,690 p=13884 u=eclass n=ansible | proxy-maxscale | UNREACHABLE! => {
+    "changed": false, 
+    "msg": "Data could not be sent to remote host \"172.16.122.154\". Make sure this host can be reached over ssh: ssh: connect to host 172.16.122.154 port 22: Connection timed out\r\n", 
+    "unreachable": true
+}
