@@ -1,0 +1,177 @@
+version: "3.7"
+## --------- #
+# Services  #
+# --------- #
+services:
+  ###########
+  # PHP-FPM #
+  ###########
+  php80:
+    image: ${REGISTRY_URL}/ecdock/rockylinux-php80:latest
+#    container_name: ${COMPOSE_PROJECT_NAME}_php80
+#    restart: always
+#    privileged: true
+    ports:
+      - "${NGINX_PHP_UPSTREAM_PORT}:9000"
+#    depends_on:
+#      - mysql
+    networks:
+      proxy:
+#        priority: 1000
+      internal:
+#        priority: 100
+        aliases:
+          -  php80_ecdock
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+      - /etc/localtime:/etc/localtime:ro
+      - ${PROJECT_ROOT}/:/home/web
+      - /home/nfs/ipx/shared/ipx/storage/:/home/web/storage
+      - /home/nfs/ipx/shared/ipx/env/:/home/web/env
+      - /home/nfs/ipx/shared/ipx/.env:/home/web/.env
+      - ~/.ssh:/root/.ssh
+      - ${ECDOCK_ROOT}/conf/php80/php.ini:/etc/php.ini
+      - ${ECDOCK_ROOT}/conf/php80/php-fpm.d/www.conf:/etc/php-fpm.d/www.conf
+      - ${ECDOCK_ROOT}/scripts:/root/scripts
+      - type: tmpfs
+        target: /tmp
+      - type: tmpfs
+        target: /run
+    environment:
+      COMPOSER_MEMORY_LIMIT: ${PHPFPM_COMPOSER_MEMORY_LIMIT}
+      HOST_USER_ID:          ${HOST_USER}
+      HOST_GROUP_ID:         ${HOST_GROUP}
+
+  ######################
+  # Nginx Application  #
+  ######################
+  web:
+    image: ${REGISTRY_URL}/ecdock/rockylinux-web:latest
+#    container_name: ${COMPOSE_PROJECT_NAME}_web
+    ports:
+      - "${NGINX_HOST_HTTP_PORT}:80"
+#      - "${NGINX_HOST_HTTPS_PORT}:443"
+    networks:
+      - traefik-public
+      - proxy
+      - internal
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+      - /etc/localtime:/etc/localtime:ro
+      - ${PROJECT_ROOT}/:/home/web
+      - /home/nfs/ipx/shared/ipx/storage/:/home/web/storage
+      - /home/nfs/ipx/shared/ipx/env/:/home/web/env
+      - /home/nfs/ipx/shared/ipx/.env:/home/web/.env
+      - ${NGINX_SSL_PATH}:/etc/ssl/certs
+#      - ${NGINX_HOST_LOG_PATH}:/var/log/nginx
+      - ${ECDOCK_ROOT}/conf/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ${ECDOCK_ROOT}/conf/nginx/conf.d:/etc/nginx/conf.d
+#      - ${ECDOCK_ROOT}/conf/elk:/home/eclass
+      - ${ECDOCK_ROOT}/scripts:/root/scripts
+      - ${ECDOCK_ROOT}/conf/crontab:/etc/crontab
+      - type: tmpfs
+        target: /tmp
+      - type: tmpfs
+        target: /run
+    environment:
+      HOST_USER_ID:  ${HOST_USER}
+      HOST_GROUP_ID: ${HOST_GROUP}
+    healthcheck:
+      test: ["CMD", "service", "nginx", "status"]
+    deploy:
+       mode: global
+       update_config:
+          parallelism: 0
+          order: start-first
+          failure_action: rollback
+          delay: 10s
+       rollback_config:
+          parallelism: 0
+          order: stop-first
+       restart_policy:
+          condition: any
+          delay: 5s
+          max_attempts: 3
+          window: 120s
+       placement:
+          constraints: [node.labels.Web == true]
+       labels:
+         - traefik.enable=true
+         - traefik.http.services.${COMPOSE_PROJECT_NAME}_web.loadbalancer.server.port=80
+         - traefik.http.routers.${COMPOSE_PROJECT_NAME}_web.entrypoints=web
+         - traefik.http.routers.${COMPOSE_PROJECT_NAME}_web.rule=Host(`ipx-demo.eclasscloud.hk`)
+#         - traefik.http.routers.${COMPOSE_PROJECT_NAME}_web.tls=true 
+         - traefik.docker.network=traefik-public
+#         - traefik.http.routers.${COMPOSE_PROJECT_NAME}_web.middlewares=redirect@file
+
+#  #########
+#  # MySql #
+#  #########
+#  mysql:
+#    image: mariadb:${MYSQL_VERSION}
+#    container_name: ${COMPOSE_PROJECT_NAME}_mysql
+##    restart: always
+#    command:
+#      - --collation-server=utf8_unicode_ci
+#      - --character-set-server=utf8
+#      - --sync-binlog=0
+#      - --innodb-flush-log-at-trx-commit=0
+#      - --innodb-io-capacity=2500
+#      - --innodb-io-capacity-max=4500
+#      - --innodb-flush-method=O_DIRECT
+#      - --innodb-flush-sync=0
+#      - --skip-innodb-doublewrite
+#      - --sql-mode=
+#    ports:
+#      - ${MYSQL_PORT}:3306
+#    networks:
+#      internal:
+#        aliases:
+#          - mysql.internal
+#    volumes:
+#      - data:/var/lib/mysql
+#    environment:
+#      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+#      MYSQL_DATABASE:      "${MYSQL_DATABASE}"
+
+  #########
+  # Redis #
+  #########
+  redis:
+    image: redis
+    container_name: ${COMPOSE_PROJECT_NAME}_redis
+    restart: always
+    volumes:
+      - ${ECDOCK_ROOT}/data/redis:/data
+    ports:
+      - ${REDIS_PORT}:6379
+    networks:
+      - internal
+
+  #############
+  # Memcached #
+  #############
+  memcached:
+    image: memcached
+    container_name: ${COMPOSE_PROJECT_NAME}_memcahed
+    restart: always
+    ports:
+      - ${MEMCACHED_PORT}:11211
+    networks:
+      - internal
+
+# --------- #
+# Networks  #
+# --------- #
+networks:
+  traefik-public:
+    external: true
+  internal:
+  proxy:
+    external: true
+    name: ecdock-proxy
+# ------- #
+# Volumes #
+# ------- #
+volumes:
+  data:

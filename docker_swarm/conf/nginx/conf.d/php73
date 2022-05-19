@@ -1,0 +1,39 @@
+server {
+        listen 80;
+	listen [::]:80;
+	listen 443 ssl;
+	listen [::]:443 ssl;
+	#ssl_certificate /etc/ssl/certs/local-cert.pem;
+	#ssl_certificate_key /etc/ssl/certs/local-key.pem;
+        #Set server name
+        server_name dsi.docker.local;
+        index index.php index.html;
+        root /home/web/public/;
+
+        proxy_connect_timeout 5400000;
+        proxy_read_timeout 5400000;
+        proxy_send_timeout 5400000;
+        tcp_nodelay on;
+
+        location / {
+                try_files $uri $uri/ /index.php?$query_string;
+        }
+
+        location ~ \.php$ {
+                fastcgi_split_path_info ^(.+\.php)(/.+)$;
+                fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+                #Seperate php-fpm use only
+                fastcgi_pass php73:9000;
+                fastcgi_index index.php;
+                include fastcgi_params;
+        }
+
+
+        location ~ /.ht {
+                deny  all;
+        }
+
+        location ~ /.well-known {
+                allow all;
+        }
+}

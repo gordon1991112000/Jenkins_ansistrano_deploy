@@ -1,0 +1,164 @@
+version: "3.7"
+# --------- #
+# Services  #
+# --------- #
+services:
+  ########
+  # BASE #
+  ########
+  base:
+    build:
+      context: "${ECDOCK_ROOT}/docker/base"
+    image: ecdock/centos8-base
+    container_name: ${COMPOSE_PROJECT_NAME}_centos8-base
+    networks:
+      - internal
+
+  ###########
+  # PHP-FPM #
+  ###########
+  php80:
+    build:
+      context: "${ECDOCK_ROOT}/docker/php80/"
+    container_name: ${COMPOSE_PROJECT_NAME}_php80
+    restart: always
+    privileged: true
+    ports:
+      - "${NGINX_PHP_UPSTREAM_PORT}:9000"
+    depends_on:
+      - mysql
+    networks:
+      proxy:
+        priority: 1000
+      internal:
+        priority: 100
+        aliases:
+          -  php80.internal
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+      - /etc/localtime:/etc/localtime:ro
+      - ${PROJECT_ROOT}/:/home/web
+      - ~/.ssh:/root/.ssh
+      - ${ECDOCK_ROOT}/conf/php80/php.ini:/etc/php.ini
+      - ${ECDOCK_ROOT}/conf/php80/php-fpm.d/www.conf:/etc/php-fpm.d/www.conf
+      - ${ECDOCK_ROOT}/scripts:/root/scripts
+    environment:
+      COMPOSER_MEMORY_LIMIT: ${PHPFPM_COMPOSER_MEMORY_LIMIT}
+      HOST_USER_ID:          ${HOST_USER}
+      HOST_GROUP_ID:         ${HOST_GROUP}
+
+  ######################
+  # Nginx Application  #
+  ######################
+  web:
+    build:
+      context: "${ECDOCK_ROOT}/docker/nginx/"
+    container_name: ${COMPOSE_PROJECT_NAME}_web
+    restart: always
+    ports:
+      - "${NGINX_HOST_HTTP_PORT}:80"
+      - "${NGINX_HOST_HTTPS_PORT}:443"
+    privileged: true
+    depends_on:
+      - php80
+    networks:
+      proxy:
+        priority: 1000
+      internal:
+        priority: 100
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+      - /etc/localtime:/etc/localtime:ro
+      - ${PROJECT_ROOT}/:/home/web
+      - ${NGINX_SSL_PATH}:/etc/ssl/certs
+      - ${NGINX_HOST_LOG_PATH}:/var/log/nginx
+      - ${ECDOCK_ROOT}/conf/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ${ECDOCK_ROOT}/conf/nginx/conf.d/ipx:/etc/nginx/conf.d
+      - ${ECDOCK_ROOT}/scripts:/root/scripts
+      - ${ECDOCK_ROOT}/conf/crontab:/etc/crontab
+    environment:
+      HOST_USER_ID:  ${HOST_USER}
+      HOST_GROUP_ID: ${HOST_GROUP}
+    security_opt:
+      - no-new-privileges:true
+    labels:
+      # Enable this container to be mapped by traefik
+      # For more information, see: https://docs.traefik.io/providers/docker/#exposedbydefault
+      - "traefik.enable=true"
+      # URL to reach this container
+      - "traefik.http.routers.${COMPOSE_PROJECT_NAME}_web.rule=Host(`${PROJECT_URL}`, `${PROJECT_URL_UAT}`)"
+      # Activation of TLS
+      - "traefik.http.routers.${COMPOSE_PROJECT_NAME}_web.tls=true"
+      # If port is different than 80, use the following service:
+      # - "traefik.http.services.<service_name>.loadbalancer.server.port=<port>"
+      - "traefik.docker.network=ecdock-proxy"
+
+  #########
+  # MySql #
+  #########
+  mysql:
+    image: mariadb:${MYSQL_VERSION}
+    container_name: ${COMPOSE_PROJECT_NAME}_mysql
+    restart: always
+    command:
+      - --collation-server=utf8_unicode_ci
+      - --character-set-server=utf8
+      - --sync-binlog=0
+      - --innodb-flush-log-at-trx-commit=0
+      - --innodb-io-capacity=2500
+      - --innodb-io-capacity-max=4500
+      - --innodb-flush-method=O_DIRECT
+      - --innodb-flush-sync=0
+      - --skip-innodb-doublewrite
+      - --sql-mode=
+    ports:
+      - ${MYSQL_PORT}:3306
+    networks:
+      internal:
+        aliases:
+          - mysql.internal
+    volumes:
+      - data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+      MYSQL_DATABASE:      "${MYSQL_DATABASE}"
+
+  #########
+  # Redis #
+  #########
+  redis:
+    image: redis
+    container_name: ${COMPOSE_PROJECT_NAME}_redis
+    restart: always
+    volumes:
+      - ${ECDOCK_ROOT}/data/redis:/data
+    ports:
+      - ${REDIS_PORT}:6379
+    networks:
+      - internal
+
+  #############
+  # Memcached #
+  #############
+  memcached:
+    image: memcached
+    container_name: ${COMPOSE_PROJECT_NAME}_memcahed
+    restart: always
+    ports:
+      - ${MEMCACHED_PORT}:11211
+    networks:
+      - internal
+
+# --------- #
+# Networks  #
+# --------- #
+networks:
+  internal:
+  proxy:
+    external: true
+    name: ecdock-proxy
+# ------- #
+# Volumes #
+# ------- #
+volumes:
+  data:

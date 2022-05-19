@@ -1,0 +1,157 @@
+version: "3.7"
+## --------- #
+# Services  #
+# --------- #
+services:
+  agent:
+    image: portainer/agent
+    environment:
+      AGENT_CLUSTER_ADDR: tasks.agent
+      AGENT_PORT: 9001
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/lib/docker/volumes:/var/lib/docker/volumes
+    networks:
+      - portainer-network
+    deploy:
+      mode: global
+
+  portainer:
+    image: portainer/portainer-ce
+    command: -H tcp://tasks.agent:9001 --tlsskipverify
+    ports:
+      - "9000:9000"
+      - "8000:8000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer-data:/data
+    networks:
+      - portainer-network
+      - traefik-public
+    restart: always
+    deploy:
+      mode: replicated
+      replicas: 1
+      labels:
+        - traefik.enable=true
+        - traefik.http.services.portainer.loadbalancer.server.port=9000
+        - traefik.http.routers.portainer.rule=Host(`ipx-demo-portainer.${DOMAIN}`)
+        - traefik.http.routers.portainer.entrypoints=web
+        - traefik.docker.network=traefik-public
+#        - traefik.http.routers.portainer.middlewares=redirect@file
+      placement:
+        constraints: 
+            - node.role == manager
+            - node.Labels.Manager == two
+
+  traefik:
+   image: "traefik:v2.1"
+#   container_name: "traefik"
+#   hostname: "traefik"
+   networks:
+     - traefik-public
+   ports:
+     - "80:80"
+     - "8081:8080"
+   volumes:
+     - "/var/run/docker.sock:/var/run/docker.sock:ro"
+     - "./traefik/traefik.yml:/traefik.yml:ro"
+   deploy:
+      mode: global
+      placement:
+        constraints:
+          - node.role == manager
+        preferences:
+          - spread: node.id
+#services:
+#  #############
+#  # Portainer #
+#  #############
+#  portainer:
+#    image:  portainer/portainer-ce:latest
+#    container_name: portainer
+#    restart: always
+#    ports:
+#      - "${PORTAINER_PORT}:9000"
+#    command: -H unix:///var/run/docker.sock
+#    volumes:
+#      - /var/run/docker.sock:/var/run/docker.sock:z
+#      - portainer_data:/data
+#    networks:
+#    - internal
+#    - proxy
+#     - traefik-public
+#     - swarmlet-network
+
+  ################
+  # redisinsight #
+  ################
+#  redisinsight:
+#    image: redislabs/redisinsight:latest
+#    container_name: redisinsight
+#    ports:
+#      - ${REDISINSIGHT_PORT}:8001
+#    volumes:
+#      - ${ECDOCK_ROOT}/data/redisinsight:/data
+#    networks:
+#      - internal
+      
+  ###########
+  # Traefik #
+  ###########
+#  traefik:
+#    image: traefik:v2.4.8
+#    container_name: traefik
+#    restart: unless-stopped
+#    security_opt:
+#      - no-new-privileges:true
+#    ports:
+#      # Web
+#      - 80:80
+#      - 443:443
+#    volumes:
+#      - /var/run/docker.sock:/var/run/docker.sock:ro
+#      # Map the static conf into the container
+#      - ./traefik/traefik.yml:/etc/traefik/traefik.yml:ro
+#      # Map the dynamic conf into the container
+#      - ./traefik/config.yml:/etc/traefik/config.yml:ro
+#      # Map the certificats into the container
+#      - ./certs:/etc/certs:ro
+#    networks:
+#      internal:
+#      proxy:
+#          ipv4_address: ${TRAEFIK_IP}
+#    labels:
+#      - "traefik.docker.network=ecdock-proxy"
+#      # Enable this container to be mapped by traefik
+#      # For more information, see: https://docs.traefik.io/providers/docker/#exposedbydefault
+#      - "traefik.enable=true"
+#      # Use "traefik" router configuration defined into the dynamic config file: ./traefik/config.yml
+#      - "traefik.http.routers.traefik=true"
+
+# --------- #
+# Networks  #
+# --------- #
+networks:
+  portainer-network:
+  traefik-public:
+    external: true
+  swarmlet-network:
+    external: true
+#  internal:
+#    name: ecdock-portainer
+#  proxy:
+#    driver: overlay
+#    ipam:
+#        driver: default
+#        config:
+#            - subnet: 172.168.0.0/16
+#              gateway: 172.168.0.1
+#    #external: true
+#    name: ecdock-proxy
+# ------- #
+## Volumes #
+# ------- #
+volumes:
+    portainer-data:
+      external: true
