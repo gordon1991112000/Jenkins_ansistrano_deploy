@@ -1,0 +1,8 @@
+---
+mx_mode: 0 
+maxscale_user: ecmaxscale
+maxscale_pass: eCklbMaxs
+monitor_user: ecmaxscale
+monitor_pass: eCklbMaxs
+primary: 10.0.3.195
+backup: 10.0.3.196 10.0.3.198
