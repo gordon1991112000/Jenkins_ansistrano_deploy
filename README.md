@@ -69,4 +69,4 @@ In Ansible directory, there are playbooks defined. We have used a role called an
 
 ![image](https://github.com/gordon1991112000/Jenkins_ansistrano_deploy/blob/main/structure.PNG)
 
-The playbook-deploy.yml is used to deploy a new project. Playbook-update.yml is used to update the project. When a deployment is made and there are errors, we can use the playbook-rollback.yml to rollback to previous version by just use symlink described in the picture.
+The playbook-deploy.yml is used to deploy a new project, the latest source code will be pulled from the gitlab defined in the playbook. Playbook-update.yml is used to update the project. When a deployment is made and there are errors, we can use the playbook-rollback.yml to rollback to previous version by just use symlink described in the picture.
