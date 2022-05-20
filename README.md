@@ -51,6 +51,7 @@ Use docker-compose in elk directory to deploy the elk containers.
 Docker Swarm cluster
 --------------------
 We have five virtual machines to form a docker swarm cluster which include three manager and two worker nodes. In the cluster, there are different containers including contianer with php installl, container with nginx install, container with redis and memcached installed.
+Moreover, Dockerfile is stored in the docker directory when we created a Rocky-linux base image with php, nginx etc. installed. The images are then uploaded and stored in the Harbor.
 
 Also Portainer container is also created for monitoring the docker stack. Portainer is a centralized multi-cluster Container Management Platform. 
 With an intuitive UI, codified best practices, and cloud-native design templates, Portainer reduces the operational complexity associated with multi-cluster container management. 
