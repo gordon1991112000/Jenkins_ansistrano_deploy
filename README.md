@@ -11,4 +11,8 @@ Infrasturture
 Apisix
 ------
 Apache APISIX is a dynamic, real-time, high-performance API gateway. APISIX provides rich traffic management features such as load balancing, dynamic upstream, canary release, circuit breaking, authentication, observability, and more.
+![image](https://github.com/gordon1991112000/Jenkins_ansistrano_deploy/blob/main/apisix_ingress.png)
 
+Harbor
+------
+Harbor is an open source registry that secures artifacts with policies and role-based access control, ensures images are scanned and free from vulnerabilities, and signs images as trusted. Harbor, a CNCF Graduated project, delivers compliance, performance, and interoperability to help you consistently and securely manage artifacts across cloud native compute platforms like Kubernetes and Docker.
