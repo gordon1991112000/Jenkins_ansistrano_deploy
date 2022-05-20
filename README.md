@@ -61,3 +61,16 @@ Portainer provides universal support for all orchestrators (Docker, Swarm, Nomad
 Also traefik containers are applied between the Apisix and the nginx.
 Traefik is an open-source Edge Router that makes publishing your services a fun and easy experience. It receives requests on behalf of your system and finds out which components are responsible for handling them.
 Behind Traefik, we have Portainer and two nginx containers placed in two worker nodes respectively. In the docker-compose file, we defined labels for each container with domain name binding to Traefik. Hence Traefik can handle the traffic for us to route to different services.
+
+Deployment of project
+---------------------
+The web application is develop with php by the developer. We have created a pipeline once the developers update the source code, they can build the web application automatically using Jenkins.
+In Ansible directory, there are playbooks defined. We have used a role called ansistrano in the playbooks. Ansistrano is an Ansible Galaxy roles to easily deploy and rollback your scripting applications written in PHP, Python, NodeJS, or Ruby.
+
+![image](https://github.com/gordon1991112000/Jenkins_ansistrano_deploy/blob/main/structure.PNG)
+
+The playbook-deploy.yml is used to deploy a new project, the latest source code will be pulled from the gitlab defined in the playbook. Playbook-update.yml is used to update the project. When a deployment is made and there are errors, we can use the playbook-rollback.yml to rollback to previous version by just use symlink described in the picture.
+
+![image](https://user-images.githubusercontent.com/8767584/166629162-43c2b2fb-c6cc-4f87-ba6a-5e50b5d7a4ca.png)
+In Jenkins, developer can select the branch they want to use, select the domain name they want to create, then click build button, the docker swarm cluster will be created, php project initialization will be done, some php migration will be done automatically and our web application is created.
+If the developer wanto the perform a Rollback, he can just check the Rollback box, if he has a specific version want to rollback to, he can input the version in the Rollback_version box, otherwise the previous version will be rollback.
