@@ -34,3 +34,15 @@ Follow the manual in the Mariadb directory to create the db cluster.
 
 There is a ansible playbook used to create a service called Maxscale. MariaDB MaxScale is a database proxy that extends the high availability, scalability, and security of MariaDB Server while at the same time simplifying application development by decoupling it from underlying database infrastructure
 ![image](https://github.com/gordon1991112000/Jenkins_ansistrano_deploy/blob/main/maxscle.PNG)
+
+Prometheus & Grafana
+--------------------
+Prometheus is an open source monitoring system for which Grafana provides interactive visualization including charts, graphs and alert. All virtual machines can be monitored with node exported installed.
+![image](https://github.com/gordon1991112000/Jenkins_ansistrano_deploy/blob/main/prometheus.PNG)
+![image](https://github.com/gordon1991112000/Jenkins_ansistrano_deploy/blob/main/grafana.PNG)
+
+ELK
+---
+ELK is an acronym for several open source tools: Elasticsearch, Logstash, and Kibana. Elasticsearch is the engine of the Elastic Stack, which provides analytics and search functionalities. Logstash is responsible for collecting, aggregating, and storing data to be used by Elasticsearch. Kibana provides the user interface and insights into data previously collected and analyzed by Elasticsearch.
+
+
