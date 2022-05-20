@@ -15,6 +15,9 @@ Apache APISIX is a dynamic, real-time, high-performance API gateway. APISIX prov
 
 Use docker-compose in Apisix directoy to deploy the Apisix containers.
 
+We will define the domain name of our application here and also a SSL certification is applied.
+![image](https://github.com/gordon1991112000/Jenkins_ansistrano_deploy/blob/main/api_.PNG)
+
 Harbor
 ------
 Harbor is an open source registry that secures artifacts with policies and role-based access control, ensures images are scanned and free from vulnerabilities, and signs images as trusted. Harbor, a CNCF Graduated project, delivers compliance, performance, and interoperability to help you consistently and securely manage artifacts across cloud native compute platforms like Kubernetes and Docker.
