@@ -70,3 +70,7 @@ In Ansible directory, there are playbooks defined. We have used a role called an
 ![image](https://github.com/gordon1991112000/Jenkins_ansistrano_deploy/blob/main/structure.PNG)
 
 The playbook-deploy.yml is used to deploy a new project, the latest source code will be pulled from the gitlab defined in the playbook. Playbook-update.yml is used to update the project. When a deployment is made and there are errors, we can use the playbook-rollback.yml to rollback to previous version by just use symlink described in the picture.
+
+![image](https://user-images.githubusercontent.com/8767584/166629162-43c2b2fb-c6cc-4f87-ba6a-5e50b5d7a4ca.png)
+In Jenkins, developer can select the branch they want to use, select the domain name they want to create, then click build button, the docker swarm cluster will be created, php project initialization will be done, some php migration will be done automatically and our web application is created.
+If the developer wanto the perform a Rollback, he can just check the Rollback box, if he has a specific version want to rollback to, he can input the version in the Rollback_version box, otherwise the previous version will be rollback.
