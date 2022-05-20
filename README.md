@@ -55,6 +55,7 @@ We have five virtual machines to form a docker swarm cluster which include three
 Also Portainer container is also created for monitoring the docker stack. Portainer is a centralized multi-cluster Container Management Platform. 
 With an intuitive UI, codified best practices, and cloud-native design templates, Portainer reduces the operational complexity associated with multi-cluster container management. 
 Portainer provides universal support for all orchestrators (Docker, Swarm, Nomad, Kubernetes) across all environments
+![image](https://github.com/gordon1991112000/Jenkins_ansistrano_deploy/blob/main/portainer.PNG)
 
 Also traefik containers are applied between the Apisix and the nginx.
 Traefik is an open-source Edge Router that makes publishing your services a fun and easy experience. It receives requests on behalf of your system and finds out which components are responsible for handling them.
