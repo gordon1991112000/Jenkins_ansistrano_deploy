@@ -44,5 +44,7 @@ Prometheus is an open source monitoring system for which Grafana provides intera
 ELK
 ---
 ELK is an acronym for several open source tools: Elasticsearch, Logstash, and Kibana. Elasticsearch is the engine of the Elastic Stack, which provides analytics and search functionalities. Logstash is responsible for collecting, aggregating, and storing data to be used by Elasticsearch. Kibana provides the user interface and insights into data previously collected and analyzed by Elasticsearch.
-
+![image](https://github.com/gordon1991112000/Jenkins_ansistrano_deploy/blob/main/elk_.PNG)
+Elastic-agent is installed in VMs and containers in order to collect corresponding logs and sent to Elasticseach for further processing.
+Use docker-compose in elk directory to deploy the elk containers.
 
