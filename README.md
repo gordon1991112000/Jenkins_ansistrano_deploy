@@ -61,6 +61,7 @@ Portainer provides universal support for all orchestrators (Docker, Swarm, Nomad
 Also traefik containers are applied between the Apisix and the nginx.
 Traefik is an open-source Edge Router that makes publishing your services a fun and easy experience. It receives requests on behalf of your system and finds out which components are responsible for handling them.
 Behind Traefik, we have Portainer and two nginx containers placed in two worker nodes respectively. In the docker-compose file, we defined labels for each container with domain name binding to Traefik. Hence Traefik can handle the traffic for us to route to different services.
+![image](https://github.com/gordon1991112000/Jenkins_ansistrano_deploy/blob/main/traefik.PNG)
 
 Deployment of project
 ---------------------
