@@ -39,7 +39,7 @@ Prometheus & Grafana
 --------------------
 Prometheus is an open source monitoring system for which Grafana provides interactive visualization including charts, graphs and alert. All virtual machines can be monitored with node exported installed.
 ![image](https://github.com/gordon1991112000/Jenkins_ansistrano_deploy/blob/main/prometheus.PNG)
-
+![image](https://github.com/gordon1991112000/Jenkins_ansistrano_deploy/blob/main/grafana.PNG)
 
 
 
