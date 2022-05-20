@@ -48,3 +48,14 @@ ELK is an acronym for several open source tools: Elasticsearch, Logstash, and Ki
 Elastic-agent is installed in VMs and containers in order to collect corresponding logs and sent to Elasticseach for further processing.
 Use docker-compose in elk directory to deploy the elk containers.
 
+Docker Swarm cluster
+--------------------
+We have five virtual machines to form a docker swarm cluster which include three manager and two worker nodes. In the cluster, there are different containers including contianer with php installl, container with nginx install, container with redis and memcached installed.
+
+Also Portainer container is also created for monitoring the docker stack. Portainer is a centralized multi-cluster Container Management Platform. 
+With an intuitive UI, codified best practices, and cloud-native design templates, Portainer reduces the operational complexity associated with multi-cluster container management. 
+Portainer provides universal support for all orchestrators (Docker, Swarm, Nomad, Kubernetes) across all environments
+
+Also traefik containers are applied between the Apisix and the nginx.
+Traefik is an open-source Edge Router that makes publishing your services a fun and easy experience. It receives requests on behalf of your system and finds out which components are responsible for handling them.
+Behind Traefik, we have Portainer and two nginx containers placed in two worker nodes respectively. In the docker-compose file, we defined labels for each container with domain name binding to Traefik. Hence Traefik can handle the traffic for us to route to different services.
