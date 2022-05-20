@@ -41,6 +41,8 @@ Prometheus is an open source monitoring system for which Grafana provides intera
 ![image](https://github.com/gordon1991112000/Jenkins_ansistrano_deploy/blob/main/prometheus.PNG)
 ![image](https://github.com/gordon1991112000/Jenkins_ansistrano_deploy/blob/main/grafana.PNG)
 
-
+ELK
+---
+ELK is an acronym for several open source tools: Elasticsearch, Logstash, and Kibana. Elasticsearch is the engine of the Elastic Stack, which provides analytics and search functionalities. Logstash is responsible for collecting, aggregating, and storing data to be used by Elasticsearch. Kibana provides the user interface and insights into data previously collected and analyzed by Elasticsearch.
 
 
