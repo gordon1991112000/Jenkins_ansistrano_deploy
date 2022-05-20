@@ -11,4 +11,4 @@ Infrasturture
 Apisix
 ------
 Apache APISIX is a dynamic, real-time, high-performance API gateway. APISIX provides rich traffic management features such as load balancing, dynamic upstream, canary release, circuit breaking, authentication, observability, and more.
-![image](https://images.app.goo.gl/36YA1BNPgUvWwigG8)
+
