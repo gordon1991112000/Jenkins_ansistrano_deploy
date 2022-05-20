@@ -67,3 +67,4 @@ Deployment of project
 The web application is develop with php by the developer. We have created a pipeline once the developers update the source code, they can build the web application automatically using Jenkins.
 In Ansible directory, there are playbooks defined. We have used a role called ansistrano in the playbooks. Ansistrano is an Ansible Galaxy roles to easily deploy and rollback your scripting applications written in PHP, Python, NodeJS, or Ruby.
 ![image](https://github.com/gordon1991112000/Jenkins_ansistrano_deploy/blob/main/structure.PNG)
+The playbook-deploy.yml is used to deploy a new project. Playbook-update.yml is used to update the project. When a deployment is made and there are errors, we can use the playbook-rollback.yml to rollback to previous version by just use symlink described in the picture.
