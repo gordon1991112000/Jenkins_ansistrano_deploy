@@ -16,6 +16,7 @@ Apache APISIX is a dynamic, real-time, high-performance API gateway. APISIX prov
 Use docker-compose in Apisix directoy to deploy the Apisix containers.
 
 We will define the domain name of our application here and also a SSL certification is applied.
+![image](https://github.com/gordon1991112000/Jenkins_ansistrano_deploy/blob/main/api_.PNG)
 
 Harbor
 ------
