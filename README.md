@@ -32,4 +32,5 @@ Database
 We are using Mariadb as the database. Three db instances are created and one will be the master and the rest are the slaves. All data will be written into the master db while it will replicate to the slaves dbs. Data will be read through the slave dbs.
 Follow the manual in the Mariadb directory to create the db cluster.
 
-There is a ansible playbook used to create a service called Maxscale
+There is a ansible playbook used to create a service called Maxscale. MariaDB MaxScale is a database proxy that extends the high availability, scalability, and security of MariaDB Server while at the same time simplifying application development by decoupling it from underlying database infrastructure
+![image](https://github.com/gordon1991112000/Jenkins_ansistrano_deploy/blob/main/maxscle.PNG)
