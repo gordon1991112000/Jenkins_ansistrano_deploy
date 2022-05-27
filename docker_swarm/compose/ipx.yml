@@ -25,7 +25,7 @@ services:
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
       - /etc/localtime:/etc/localtime:ro
-      - ${PROJECT_ROOT}/:/home/web
+      - ${PROJECT_ROOT}:/home/web
       - /home/nfs/ipx/shared/ipx/storage/:/home/web/storage
       - /home/nfs/ipx/shared/ipx/env/:/home/web/env
       - /home/nfs/ipx/shared/ipx/.env:/home/web/.env
