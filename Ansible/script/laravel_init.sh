@@ -19,14 +19,5 @@ yes | php artisan db:seed --domain=$domain
 yes | php artisan migrate --domain=$domain
 npx mix
 php artisan horizon --domain=$domain &
-php artisan tunnel:sync-ip30-years --domain=$domain
-php artisan tunnel:sync-ip30-terms --domain=$domain
-php artisan tunnel:sync-ip30-users --domain=$domain
-php artisan tunnel:sync-ip30-archive-users --domain=$domain
-php artisan tunnel:sync-ip30-student-info --domain=$domain
-php artisan tunnel:sync-ip30-parent-info --domain=$domain
-php artisan tunnel:sync-ip30-staff-info --domain=$domain
-php artisan tunnel:sync-ip30-alumni-info --domain=$domain
-php artisan tunnel:sync-ip30-parent-relations --domain=$domain
-php artisan tunnel:sync-ip30-guardian --domain=$domain
+#php artisan tunnel:sync-ip30-school-management --domain=$domain
 yes | php artisan migrate --domain=$domain

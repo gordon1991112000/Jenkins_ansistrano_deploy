@@ -1,32 +1,5 @@
-#- name: change permission of release folder1
-#  shell:
-#     find . -type f -exec chmod 644 {} \;
-#  args:
-#     chdir: /home/nfs/ipx/current
-#
-#- name: change permission of release folder2
-#  shell:
-#     find . -type d -exec chmod 755 {} \;
-#  args:
-#     chdir: /home/nfs/ipx/current
-#
-#- name: change permission of release storage folder
-#  shell:
-#     chmod -R 777 /home/nfs/ipx/current/storage
-#
-#- name: change permission of release bootstrap folder
-#  shell:
-#     chmod -R 777 /home/nfs/ipx/current/bootstrap/cache
-#
-- name: change permission of release folder
+- name: Update ownership and permission
   shell:
-     chmod 777 "{{ ansistrano_release_path.stdout }}"
-
-#- name: change ownership of release folder
-#  shell:
-#     chown eclass:eclass -R "{{ ansistrano_release_path.stdout }}"/*
-#
-#- name: change ownership of release .folder
-#  shell:
-#     chown eclass:eclass -R /home/nfs/ipx/current/.*
-#
+    "./change_permission_after_update.sh"
+  args:
+     chdir: /home/nfs/script

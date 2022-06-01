@@ -15,6 +15,7 @@
     ansistrano_shared_paths:
        - storage
        - env
+       - vendor
     ansistrano_shared_files:
        - .env
 

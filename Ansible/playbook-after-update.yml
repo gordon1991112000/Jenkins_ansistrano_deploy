@@ -1,0 +1,19 @@
+---
+- hosts: ansible_clients
+  become: yes
+  become_user: root
+  vars_files:
+    - var/main_update.yml
+  tasks:
+  - name: Restart php80 container
+    shell:
+       "docker -H ssh://root@10.0.80.84:2022 stop $(docker -H ssh://root@10.0.80.84:2022 ps | grep ecdock_php80 | awk '{print $1}')"
+
+  - name: Sleep for 20 second
+    wait_for:
+       timeout: 20
+    delegate_to: localhost
+
+  - name: Update Laravel project
+    shell:
+       "docker -H ssh://root@10.0.80.84:2022 exec -ti $(docker -H ssh://root@10.0.80.84:2022 ps | grep ecdock_php80 | awk '{print $1}') /mnt/laravel_update.sh {{ domain_name }}"

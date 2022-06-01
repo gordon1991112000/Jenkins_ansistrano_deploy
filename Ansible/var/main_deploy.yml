@@ -1,5 +1,5 @@
 ---
 
-git_repo: https://ecg.eclasscloud.hk/gordonkccheung/ipx.git 
+git_repo: https://ecg.cloud.hk/gordonkccheung/ppd.git 
 git_branch: main
-domain_name: ipx-demo.eclasscloud.hk
+domain_name: ppd-demo.cloud.hk
