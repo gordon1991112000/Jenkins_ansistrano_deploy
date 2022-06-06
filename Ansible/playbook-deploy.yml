@@ -18,6 +18,7 @@
        - vendor
     ansistrano_shared_files:
        - .env
+    is_update: "false"
 
   roles:
      - { role: ansistrano.deploy }
