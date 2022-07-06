@@ -42,3 +42,14 @@ sed -i "/laravel/s|laravel.*|laravel\_update\.sh ${Domain}\"|" /root/.ansible/ro
 ansible-playbook /home/ansistrano/playbook-update.yml
 EOF
 done
+
+##################Update shared/storage/app#######################
+cd /tmp/ipx/storage/app
+scp -pr public 192.168.10.100:/tmp
+sshpass ssh -p 22 -o StrictHostKeyChecking=no -o ConnectTimeout=60 -o ServerAliveInterval=60  root@192.168.10.100  -T << EOF
+hostname
+whoami
+cd /tmp
+chmod 777 -R public/
+scp -pr public 10.0.80.81:/home/nfs/ipx/shared/storage/app
+EOF
